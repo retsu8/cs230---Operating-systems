@@ -19,8 +19,16 @@ public class GameService {
 	 * Holds the next game identifier
 	 */
 	private static long nextGameId = 1;
+	
+	private static GameService single_instance = null;
+	
+    public static synchronized GameService getInstance()
+    {
+        if (single_instance == null)
+            single_instance = new GameService();
 
-	// FIXME: Add missing pieces to turn this class a singleton 
+        return single_instance;
+    }
 
 
 	/**
