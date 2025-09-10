@@ -22,7 +22,7 @@ public class GameService {
 	
 	private static GameService single_instance = null;
 	
-    public static synchronized GameService getInstance()
+    private static synchronized GameService getInstance()
     {
         if (single_instance == null)
             single_instance = new GameService();
@@ -42,8 +42,11 @@ public class GameService {
 		// a local game instance
 		Game game = null;
 
-		// FIXME: Use iterator to look for existing game with same name
-		// if found, simply return the existing instance
+		for (int i = 0; i < games.length; i++) {
+			if (games[i].getName() == name) {
+				Game game = games[i];
+			}
+		}
 
 		// if not found, make a new game instance and add to list of games
 		if (game == null) {
