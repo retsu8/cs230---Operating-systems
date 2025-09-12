@@ -1,6 +1,5 @@
 package com.gamingroom;
-
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -13,7 +12,8 @@ public class GameService {
 	/**
 	 * A list of the active games
 	 */
-	private static List<Game> games = new ArrayList<Game>();
+	// Fixing for static array for better looping
+	private static Game[] games = new Game[100];
 
 	/*
 	 * Holds the next game identifier
@@ -22,6 +22,7 @@ public class GameService {
 	
 	private static GameService single_instance = null;
 	
+	// Create or find the current game service instance
     private static synchronized GameService getInstance()
     {
         if (single_instance == null)
@@ -42,9 +43,10 @@ public class GameService {
 		// a local game instance
 		Game game = null;
 
-		for (int i = 0; i < games.length; i++) {
-			if (games[i].getName() == name) {
-				Game game = games[i];
+		for (int i = 0; i < games.size(); i++) {
+			if (games[i].getName().equals( name )) {
+				game = games[i];
+				break;
 			}
 		}
 
@@ -81,8 +83,12 @@ public class GameService {
 		// a local game instance
 		Game game = null;
 
-		// FIXME: Use iterator to look for existing game with same id
-		// if found, simply assign that instance to the local variable
+		// Get games based on ids, then return when found
+		for (int i = 0; i < games.length; i++) {
+			if (games[i].getId() == id) {
+				return games[i];
+			}
+		}
 
 		return game;
 	}
@@ -98,9 +104,14 @@ public class GameService {
 		// a local game instance
 		Game game = null;
 
-		// FIXME: Use iterator to look for existing game with same name
-		// if found, simply assign that instance to the local variable
+		// Get games based on names, then return when found
+		for (int i = 0; i < games.length; i++) {
+			if (games[i].getName().equals(name)) {
+				return games[i];
+			}
+		}
 
+		// If no games are found return null
 		return game;
 	}
 

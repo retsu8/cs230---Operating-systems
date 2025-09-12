@@ -1,4 +1,5 @@
 package com.gamingroom;
+import com.gamingroom.GameService;
 
 /**
  * Application start-up program
@@ -15,7 +16,7 @@ public class ProgramDriver {
 	public static void main(String[] args) {
 		
 		// FIXME: obtain reference to the singleton instance
-		GameService service = null; // replace null with ???
+		GameService service = GameService; // replace null with ???
 		
 		System.out.println("\nAbout to test initializing game data...");
 		
