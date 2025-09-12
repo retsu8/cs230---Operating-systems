@@ -1,19 +1,22 @@
 package com.gamingroom;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import com.gamingroom.GamService;
 
 /**
  * A singleton service for the game engine
  * 
- * @author coce@snhu.edu
+ * @author william.paddock@snhu.edu
  */
 public class GameService {
 
 	/**
 	 * A list of the active games
 	 */
+	
 	// Fixing for static array for better looping
-	private static Game[] games = new Game[100];
+	private static List<Game> games = new ArrayList<Game>();
 
 	/*
 	 * Holds the next game identifier
@@ -23,11 +26,19 @@ public class GameService {
 	private static GameService single_instance = null;
 	
 	// Create or find the current game service instance
-    private static synchronized GameService getInstance()
+	public static synchronized GameService getInstance()
     {
-        if (single_instance == null)
-            single_instance = new GameService();
-
+        if (single_instance == null) {
+        	// Make it thread safe here
+	        synchronized (GameService.class)
+	        {
+	            // check again as multiple threads
+	            // can reach above step
+	            if (single_instance == null) {
+	 	           single_instance = new GameService();
+	            }
+	        }
+        }
         return single_instance;
     }
 
@@ -44,8 +55,8 @@ public class GameService {
 		Game game = null;
 
 		for (int i = 0; i < games.size(); i++) {
-			if (games[i].getName().equals( name )) {
-				game = games[i];
+			if (games.get(i).getName().equals( name )) {
+				game = games.get(i);
 				break;
 			}
 		}
@@ -84,9 +95,9 @@ public class GameService {
 		Game game = null;
 
 		// Get games based on ids, then return when found
-		for (int i = 0; i < games.length; i++) {
-			if (games[i].getId() == id) {
-				return games[i];
+		for (int i = 0; i < games.size(); i++) {
+			if (games.get(i).getId() == id) {
+				return games.get(i);
 			}
 		}
 
@@ -105,9 +116,9 @@ public class GameService {
 		Game game = null;
 
 		// Get games based on names, then return when found
-		for (int i = 0; i < games.length; i++) {
-			if (games[i].getName().equals(name)) {
-				return games[i];
+		for (int i = 0; i < games.size(); i++) {
+			if (games.get(i).getName().equals(name)) {
+				return games.get(i);
 			}
 		}
 

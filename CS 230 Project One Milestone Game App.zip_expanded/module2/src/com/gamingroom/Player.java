@@ -9,7 +9,7 @@ package com.gamingroom;
  * these values cannot be changed once a player is
  * created.
  * </p>
- * @author coce@snhu.edu
+ * @author william.paddock@snhu.edu
  *
  */
 public class Player {
