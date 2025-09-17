@@ -11,13 +11,13 @@ package com.gamingroom;
  * created.
  * </p>
  * 
- * @author coce@snhu.edu
+ * @author william.paddock@snhu.edu
  *
  */
-public class Game {
-	long id;
-	String name;
+public class Game extends Entity {
+	// Build the game engine
 	
+	private static List<Team> teams = new ArrayList<Team>();
 	/**
 	 * Hide the default constructor to prevent creating empty instances.
 	 */
@@ -32,24 +32,21 @@ public class Game {
 		this.id = id;
 		this.name = name;
 	}
-
-	/**
-	 * @return the id
-	 */
-	public long getId() {
-		return id;
+	
+	public addTeam(String name){
+		Iterator<Team> iter = teams.iterator();
+		while (iter.hasNext()){
+			Team team = iter.next();
+			if (team.getName() == name){
+				return;
+			}
+		}	
 	}
-
 	/**
-	 * @return the name
+	 * @return the game id and name for print
 	 */
-	public String getName() {
-		return name;
-	}
-
 	@Override
 	public String toString() {
-		
 		return "Game [id=" + id + ", name=" + name + "]";
 	}
 

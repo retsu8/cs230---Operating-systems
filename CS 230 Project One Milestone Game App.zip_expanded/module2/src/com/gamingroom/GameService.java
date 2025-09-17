@@ -51,9 +51,10 @@ public class GameService {
 
 		// a local game instance
 		Game game = null;
-
+		// Check the name, make sure its not a duplicate
 		for (int i = 0; i < games.size(); i++) {
 			if (games.get(i).getName().equals( name )) {
+				// Return if its a duplicate.
 				game = games.get(i);
 				break;
 			}
@@ -95,6 +96,7 @@ public class GameService {
 		// Get games based on ids, then return when found
 		for (int i = 0; i < games.size(); i++) {
 			if (games.get(i).getId() == id) {
+				// If found return the game
 				return games.get(i);
 			}
 		}

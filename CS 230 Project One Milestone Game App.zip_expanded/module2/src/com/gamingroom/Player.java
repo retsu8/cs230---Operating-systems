@@ -38,6 +38,9 @@ public class Player {
 		return name;
 	}
 
+	/**
+	 * @return Player data returned here
+	 */
 	@Override
 	public String toString() {
 		return "Player [id=" + id + ", name=" + name + "]";

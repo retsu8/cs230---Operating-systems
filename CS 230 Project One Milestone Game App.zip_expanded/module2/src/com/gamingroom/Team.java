@@ -12,7 +12,7 @@ package com.gamingroom;
  * @author coce@snhu.edu
  *
  */
-public class Team {
+public class Team extends Entity {
 	long id;
 	String name;
 	
@@ -23,21 +23,10 @@ public class Team {
 		this.id = id;
 		this.name = name;
 	}
-
-	/**
-	 * @return the id
+	
+	/*
+	 *  @return the team id and name
 	 */
-	public long getId() {
-		return id;
-	}
-
-	/**
-	 * @return the name
-	 */
-	public String getName() {
-		return name;
-	}
-
 	@Override
 	public String toString() {
 		return "Team [id=" + id + ", name=" + name + "]";
