@@ -12,30 +12,20 @@ package com.gamingroom;
  * @author william.paddock@snhu.edu
  *
  */
-public class Player {
+public class Player extends Entity {
 	long id;
 	String name;
 	
+	private Player() {
+		
+	}
 	/*
 	 * Constructor with an identifier and name
 	 */
 	public Player(long id, String name) {
+		this();
 		this.id = id;
 		this.name = name;
-	}
-
-	/**
-	 * @return the id
-	 */
-	public long getId() {
-		return id;
-	}
-
-	/**
-	 * @return the name
-	 */
-	public String getName() {
-		return name;
 	}
 
 	/**

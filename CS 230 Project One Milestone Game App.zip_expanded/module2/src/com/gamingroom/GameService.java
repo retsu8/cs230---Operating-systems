@@ -103,6 +103,19 @@ public class GameService {
 
 		return game;
 	}
+	
+	private long nextGameId(long game_id) {
+		for(int i = 0; i < games.size(); i++) {
+			Game game = games.get(i);
+			long id = game.getId();
+			if (id == game_id) {
+				if(games.contains(i++)) {
+					return game_id++;
+				} 
+			}
+		}
+		return -1;
+	}
 
 	/**
 	 * Returns the game instance with the specified name.

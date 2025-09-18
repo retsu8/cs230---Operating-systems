@@ -14,7 +14,7 @@ public class Entity {
         /**
          * Hide the default constructor to prevent creating empty instances.
          */
-        private Entity() {
+        protected Entity() {
         }
 
         /**

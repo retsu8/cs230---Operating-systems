@@ -1,5 +1,7 @@
 package com.gamingroom;
 
+import java.util.*;
+
 /**
  * A simple class to hold information about a game
  * 
@@ -18,6 +20,7 @@ public class Game extends Entity {
 	// Build the game engine
 	
 	private static List<Team> teams = new ArrayList<Team>();
+	private static long nextTeamId = 0;
 	/**
 	 * Hide the default constructor to prevent creating empty instances.
 	 */
@@ -33,14 +36,21 @@ public class Game extends Entity {
 		this.name = name;
 	}
 	
-	public addTeam(String name){
+	public Team addTeam(String name){
+		Team new_team = null;
 		Iterator<Team> iter = teams.iterator();
 		while (iter.hasNext()){
 			Team team = iter.next();
 			if (team.getName() == name){
-				return;
+				new_team = team;
+				break;
 			}
 		}	
+		if(new_team == null) {
+			new_team = new Team(nextTeamId++, name);
+			teams.add(new_team);
+		}
+		return new_team;
 	}
 	/**
 	 * @return the game id and name for print
