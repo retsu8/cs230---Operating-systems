@@ -1,8 +1,5 @@
 package com.gamingroom;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import com.gamingroom.GamService;
+import java.util.*;
 
 /**
  * A singleton service for the game engine
@@ -26,6 +23,7 @@ public class GameService {
 	private static GameService single_instance = null;
 	
 	// Create or find the current game service instance
+	// This singleton instance handles the game server making sure only one server is available at at time.
 	public static synchronized GameService getInstance()
     {
         if (single_instance == null) {
@@ -54,9 +52,13 @@ public class GameService {
 		// a local game instance
 		Game game = null;
 
-		for (int i = 0; i < games.size(); i++) {
-			if (games.get(i).getName().equals( name )) {
-				game = games.get(i);
+		// Iterate though the games to find the one with the right name
+		Iterator<Game> i = games.iterator();
+		while (i.hasNext()) {
+			Game thisGame = i.next();
+			if (thisGame.getName().equals( name )) {
+				// Found the game, return it instad of adding it.
+				game = thisGame;
 				break;
 			}
 		}
@@ -95,10 +97,13 @@ public class GameService {
 		Game game = null;
 
 		// Get games based on ids, then return when found
-		for (int i = 0; i < games.size(); i++) {
-			if (games.get(i).getId() == id) {
-				return games.get(i);
+		Iterator<Game> i = games.iterator();
+		while (i.hasNext()) {
+			Game thisGame = i.next();			
+			if (thisGame.getId() == id) {
+				return thisGame;
 			}
+			
 		}
 
 		return game;
@@ -116,10 +121,14 @@ public class GameService {
 		Game game = null;
 
 		// Get games based on names, then return when found
-		for (int i = 0; i < games.size(); i++) {
-			if (games.get(i).getName().equals(name)) {
-				return games.get(i);
+		Iterator<Game> i = games.iterator();
+		while (i.hasNext()) {
+			Game thisGame = i.next();
+			// Return the game when the name is found
+			if (thisGame.getName().equals(name)) {
+				return thisGame;
 			}
+			
 		}
 
 		// If no games are found return null

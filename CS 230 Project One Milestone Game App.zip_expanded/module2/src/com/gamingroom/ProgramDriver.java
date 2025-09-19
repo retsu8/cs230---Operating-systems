@@ -14,7 +14,7 @@ public class ProgramDriver {
 	 */
 	public static void main(String[] args) {
 		
-		// FIXME: obtain reference to the singleton instance
+		// Grabbing singleton reference
 		GameService service = GameService.getInstance();
 		
 		System.out.println("\nAbout to test initializing game data...");
