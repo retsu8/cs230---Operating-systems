@@ -23,6 +23,7 @@ public class GameService {
 	
 	private static GameService single_instance = null;
 	
+	
 	// Create or find the current game service instance
 	public static synchronized GameService getInstance()
     {
@@ -103,19 +104,6 @@ public class GameService {
 
 		return game;
 	}
-	
-	private long nextGameId(long game_id) {
-		for(int i = 0; i < games.size(); i++) {
-			Game game = games.get(i);
-			long id = game.getId();
-			if (id == game_id) {
-				if(games.contains(i++)) {
-					return game_id++;
-				} 
-			}
-		}
-		return -1;
-	}
 
 	/**
 	 * Returns the game instance with the specified name.
@@ -138,7 +126,62 @@ public class GameService {
 		// If no games are found return null
 		return game;
 	}
-
+	/** 
+	 * Get the next player id currently running game or -1 for no player or game
+	 * @param game_id
+	 * @return Next player id in game
+	 */
+	private long nextPlayerId(long player_id) {
+		for(int i = 0; i < games.size(); i++) {
+			Game game = games.get(i);
+			long id = game.getId();
+			if (id == player_id) {
+				if(games.contains(i++)) {
+					return player_id++;
+				} 
+			}
+		}
+		return -1;
+	}
+	
+	/** 
+	 * Get the next game id currently running or return -1 for no game
+	 * @param game_id
+	 * @return Next game currently running
+	 */
+	private long nextGameId(long game_id) {
+		for(int i = 0; i < games.size(); i++) {
+			Game game = games.get(i);
+			long id = game.getId();
+			if (id == game_id) {
+				if(games.contains(i++)) {
+					return game_id++;
+				} 
+			}
+		}
+		return -1;
+	}
+	/** 
+	 * Get the next team id assocaited to the game
+	 * @param game_id
+	 * @return Next game currently running
+	 */
+	private long nextTeamId(long team_id) {
+		// Assuming last game for team ids
+		for(int i = 0; i < games.size(); i++) {
+			
+		}
+		for(int i = 0; i < games.size(); i++) {
+			Game game = games.get(i);
+			long id = game.getId();
+			if (id == team_id) {
+				if(games.contains(i++)) {
+					return team_id++;
+				} 
+			}
+		}
+		return -1;
+	}
 	/**
 	 * Returns the number of games currently active
 	 * 

@@ -33,6 +33,8 @@ public class Game extends Entity {
 	public Game(long id, String name) {
 		this();
 		this.id = id;
+		// Game ids are now unique, this sets the bit for games
+		Game.nextTeamId = id * 10;
 		this.name = name;
 	}
 	
