@@ -14,7 +14,7 @@ public class ProgramDriver {
 	 */
 	public static void main(String[] args) {
 		
-		// Building initial game
+		// Grabbing singleton reference
 		GameService service = GameService.getInstance();
 		
 		System.out.println("\nAbout to test initializing game data...");

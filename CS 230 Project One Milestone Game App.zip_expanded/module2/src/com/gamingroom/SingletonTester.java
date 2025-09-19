@@ -11,7 +11,7 @@ public class SingletonTester {
 		
 		System.out.println("\nAbout to test the singleton...");
 		
-		//starting single instance
+		// Obtained a local reference to the descriptor
 		GameService service = GameService.getInstance();
 		
 		// a simple for loop to print the games
