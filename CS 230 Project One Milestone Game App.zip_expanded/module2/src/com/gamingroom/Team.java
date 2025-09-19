@@ -15,23 +15,14 @@ import java.util.*;
  *
  */
 public class Team extends Entity {
-	long id;
-	String name;
-	
-	
+	// Player list for the team.
 	private List<Player> players = new ArrayList<Player>();
-	private long nextPlayerId = 0;
 	
-	private Team() {
-		
-	}
 	/*
 	 * Constructor with an identifier and name
 	 */
 	public Team(long id, String name) {
-		this();
-		this.id = id;
-		this.name = name;
+		super(id, name);
 	}
 	
 	public Player addPlayer(String name) {
@@ -39,13 +30,12 @@ public class Team extends Entity {
 		Iterator<Player> iter = players.iterator();
 		while (iter.hasNext()){
 			Player player = iter.next();
-			if (player.getName() == name){
-				new_player = player;
-				break;
+			if (player.getName().equals(name)){
+				return player;
 			}
 		}	
 		if(new_player == null) {
-			new_player = new Player(nextPlayerId++, name);
+			new_player = new Player(id++, name);
 			players.add(new_player);
 		}
 		return new_player;

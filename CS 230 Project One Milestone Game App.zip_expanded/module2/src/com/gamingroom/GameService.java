@@ -19,6 +19,8 @@ public class GameService {
 	 * Holds the next game identifier
 	 */
 	private static long nextGameId = 1;
+	private static long nextPlayerId = 1;
+	private static long nextTeamId = 1;
 	
 	private static GameService single_instance = null;
 	
@@ -171,7 +173,7 @@ public class GameService {
 		return -1;
 	}
 	/** 
-	 * Get the next team id assocaited to the game
+	 * Get the next team id associated to the game
 	 * @param game_id
 	 * @return Next game currently running
 	 */
