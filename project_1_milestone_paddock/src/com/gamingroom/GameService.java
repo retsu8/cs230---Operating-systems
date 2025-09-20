@@ -22,25 +22,25 @@ public class GameService {
 	private static long nextPlayerId = 1;
 	private static long nextTeamId = 1;
 	
-	private static GameService single_instance = null;
+	private static GameService service = null;
 	
 	
 	// Create or find the current game service instance
 	// This singleton instance handles the game server making sure only one server is available at at time.
 	public static synchronized GameService getInstance()
     {
-        if (single_instance == null) {
+        if (service == null) {
         	// Make it thread safe here
 	        synchronized (GameService.class)
 	        {
 	            // check again as multiple threads
 	            // can reach above step
-	            if (single_instance == null) {
-	 	           single_instance = new GameService();
+	            if (service == null) {
+	            	service = new GameService();
 	            }
 	        }
         }
-        return single_instance;
+        return service;
     }
 
 
