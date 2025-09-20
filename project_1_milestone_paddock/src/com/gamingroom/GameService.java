@@ -75,18 +75,6 @@ public class GameService {
 		// return the new/existing game instance to the caller
 		return game;
 	}
-
-	/**
-	 * Returns the game instance at the specified index.
-	 * <p>
-	 * Scope is package/local for testing purposes.
-	 * </p>
-	 * @param index index position in the list to return
-	 * @return requested game instance
-	 */
-	Game getGame(int index) {
-		return games.get(index);
-	}
 	
 	/**
 	 * Returns the game instance with the specified id.
@@ -142,56 +130,17 @@ public class GameService {
 	 * @param game_id
 	 * @return Next player id in game
 	 */
-	private long nextPlayerId(long player_id) {
-		for(int i = 0; i < games.size(); i++) {
-			Game game = games.get(i);
-			long id = game.getId();
-			if (id == player_id) {
-				if(games.contains(i++)) {
-					return player_id++;
-				} 
-			}
-		}
-		return -1;
+	public long getNextPlayerId(long player_id) {
+		return nextPlayerId++;
 	}
 	
 	/** 
 	 * Get the next game id currently running or return -1 for no game
-	 * @param game_id
-	 * @return Next game currently running
+	 * @param team_id
+	 * @return Next team_id to be used
 	 */
-	private long nextGameId(long game_id) {
-		for(int i = 0; i < games.size(); i++) {
-			Game game = games.get(i);
-			long id = game.getId();
-			if (id == game_id) {
-				if(games.contains(i++)) {
-					return game_id++;
-				} 
-			}
-		}
-		return -1;
-	}
-	/** 
-	 * Get the next team id associated to the game
-	 * @param game_id
-	 * @return Next game currently running
-	 */
-	private long nextTeamId(long team_id) {
-		// Assuming last game for team ids
-		for(int i = 0; i < games.size(); i++) {
-			
-		}
-		for(int i = 0; i < games.size(); i++) {
-			Game game = games.get(i);
-			long id = game.getId();
-			if (id == team_id) {
-				if(games.contains(i++)) {
-					return team_id++;
-				} 
-			}
-		}
-		return -1;
+	public long getNextTeamId(long team_id) {
+		return nextTeamId++;
 	}
 	/**
 	 * Returns the number of games currently active
