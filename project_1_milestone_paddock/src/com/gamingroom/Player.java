@@ -13,19 +13,11 @@ package com.gamingroom;
  *
  */
 public class Player extends Entity {
-	long id;
-	String name;
-	
-	private Player() {
-		
-	}
 	/*
 	 * Constructor with an identifier and name
 	 */
 	public Player(long id, String name) {
-		this();
-		this.id = id;
-		this.name = name;
+		super(id, name);
 	}
 
 	/**

@@ -20,36 +20,26 @@ public class Game extends Entity {
 	// Build the game engine
 	
 	private static List<Team> teams = new ArrayList<Team>();
-	private static long nextTeamId = 0;
-	/**
-	 * Hide the default constructor to prevent creating empty instances.
-	 */
-	private Game() {
-	}
 
 	/**
 	 * Constructor with an identifier and name
 	 */
 	public Game(long id, String name) {
-		this();
-		this.id = id;
-		// Game ids are now unique, this sets the bit for games
-		Game.nextTeamId = id * 10;
-		this.name = name;
+		super(id, name);
 	}
 	
 	public Team addTeam(String name){
 		Team new_team = null;
+		GameService service = GameService.getInstance();
 		Iterator<Team> iter = teams.iterator();
 		while (iter.hasNext()){
 			Team team = iter.next();
 			if (team.getName() == name){
-				new_team = team;
-				break;
+				return team;
 			}
-		}	
+		}
 		if(new_team == null) {
-			new_team = new Team(nextTeamId++, name);
+			new_team = new Team(service.getNextTeamId(), name);
 			teams.add(new_team);
 		}
 		return new_team;

@@ -27,6 +27,7 @@ public class Team extends Entity {
 	
 	public Player addPlayer(String name) {
 		Player new_player = null;
+		GameService service = GameService.getInstance();
 		Iterator<Player> iter = players.iterator();
 		while (iter.hasNext()){
 			Player player = iter.next();
@@ -35,7 +36,7 @@ public class Team extends Entity {
 			}
 		}	
 		if(new_player == null) {
-			new_player = new Player(id++, name);
+			new_player = new Player(service.getNextPlayerId(), name);
 			players.add(new_player);
 		}
 		return new_player;

@@ -61,8 +61,7 @@ public class GameService {
 			Game thisGame = i.next();
 			if (thisGame.getName().equals( name )) {
 				// Found the game, return it instad of adding it.
-				game = thisGame;
-				break;
+				return thisGame;
 			}
 		}
 
@@ -130,7 +129,7 @@ public class GameService {
 	 * @param game_id
 	 * @return Next player id in game
 	 */
-	public long getNextPlayerId(long player_id) {
+	public long getNextPlayerId() {
 		return nextPlayerId++;
 	}
 	
@@ -139,7 +138,7 @@ public class GameService {
 	 * @param team_id
 	 * @return Next team_id to be used
 	 */
-	public long getNextTeamId(long team_id) {
+	public long getNextTeamId() {
 		return nextTeamId++;
 	}
 	/**
