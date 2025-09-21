@@ -14,9 +14,15 @@ import java.util.*;
  * @author william.paddock@snhu.edu
  *
  */
-public class Team extends Entity {
+public class Team extends Entity implements Iterable<Player> {
 	// Player list for the team.
 	private List<Player> players = new ArrayList<Player>();
+
+	// Implment iterator into Player list
+	@Override
+	public java.util.Iterator<Player> iterator(){
+		return players.iterator();
+	}
 	
 	/*
 	 * Constructor with an identifier and name
@@ -28,9 +34,7 @@ public class Team extends Entity {
 	public Player addPlayer(String name) {
 		Player new_player = null;
 		GameService service = GameService.getInstance();
-		Iterator<Player> iter = players.iterator();
-		while (iter.hasNext()){
-			Player player = iter.next();
+		for(Player player: players){
 			if (player.getName().equals(name)){
 				return player;
 			}

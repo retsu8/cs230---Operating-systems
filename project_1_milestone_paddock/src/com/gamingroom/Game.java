@@ -16,11 +16,16 @@ import java.util.*;
  * @author william.paddock@snhu.edu
  *
  */
-public class Game extends Entity {
+public class Game extends Entity implements Iterable<Team> {
 	// Build the game engine
 	
 	private static List<Team> teams = new ArrayList<Team>();
 
+	// Implment iterator into teams for iteration
+	@Override
+	public java.util.Iterator<Team> iterator(){
+		return teams.iterator();
+	}
 	/**
 	 * Constructor with an identifier and name
 	 */
@@ -31,15 +36,15 @@ public class Game extends Entity {
 	public Team addTeam(String name){
 		Team new_team = null;
 		GameService service = GameService.getInstance();
-		Iterator<Team> iter = teams.iterator();
-		while (iter.hasNext()){
-			Team team = iter.next();
+		for(Team team : teams){
 			if (team.getName() == name){
 				return team;
 			}
 		}
 		if(new_team == null) {
-			new_team = new Team(service.getNextTeamId(), name);
+			long new_team_id = service.getNextTeamId();
+			System.out.println(new_team_id);
+			new_team = new Team(new_team_id, name);
 			teams.add(new_team);
 		}
 		return new_team;
