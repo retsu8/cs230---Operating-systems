@@ -29,6 +29,7 @@ public class RESTClientController
         this.client = client;
     }
     
+    // Addin the path for gameusers to get all members
     @GET
     @Path("/gameusers/")
     public String getGameUsers()
@@ -43,6 +44,7 @@ public class RESTClientController
         return gameusers.toString();
     }
      
+    // Get the path of the gameusers id
     @GET
     @Path("/gameusers/{id}")
     public String getGameUserById(@PathParam("id") int id)

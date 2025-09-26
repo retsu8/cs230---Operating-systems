@@ -7,7 +7,7 @@ public class GameAuthorizer implements Authorizer<GameUser>
     @Override
     public boolean authorize(GameUser user, String role) {
     	
-        // Now checks roles and returns results
+        // Now checks roles and returns those roles
     	return user.getRoles() != null && user.getRoles().contains(role);
     }
 }

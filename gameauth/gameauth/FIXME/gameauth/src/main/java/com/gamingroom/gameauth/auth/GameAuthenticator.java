@@ -26,7 +26,7 @@ public class GameAuthenticator implements Authenticator<BasicCredentials, GameUs
     {
         if (VALID_USERS.containsKey(credentials.getUsername()) && "password".equals(credentials.getPassword())) 
         {
-            // User verified return the users verification.
+            // User verified return the users login.
         	return Optional.of(new GameUser(credentials.getUsername(), VALID_USERS.get(credentials.getUsername())));
 
         }

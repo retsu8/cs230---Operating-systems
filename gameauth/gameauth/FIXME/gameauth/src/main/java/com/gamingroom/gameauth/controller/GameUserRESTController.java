@@ -27,6 +27,7 @@ import com.gamingroom.gameauth.dao.GameUserDB;
 import com.gamingroom.gameauth.representations.GameUserInfo;
 
 @Produces(MediaType.APPLICATION_JSON)
+// This is out client path for users to login with
 @Path("/gameusers/")
 public class GameUserRESTController {
  
