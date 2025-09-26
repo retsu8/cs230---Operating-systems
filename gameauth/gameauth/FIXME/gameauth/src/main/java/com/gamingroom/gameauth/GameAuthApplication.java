@@ -26,7 +26,6 @@ import com.gamingroom.gameauth.healthcheck.AppHealthCheck;
 import com.gamingroom.gameauth.healthcheck.HealthCheckController;
 
 
-
 public class GameAuthApplication extends Application<Configuration> {
 	private static final Logger LOGGER = LoggerFactory.getLogger(GameAuthApplication.class);
 
@@ -43,6 +42,8 @@ public class GameAuthApplication extends Application<Configuration> {
 		// FIXME: Create io.dropwizard.client.JerseyClientBuilder instance and give it io.dropwizard.setup.Environment reference (based on BasicAuth Security Example)
 		
 		JerseyClientBuilder DemoRESTClient = new JerseyClientBuilder(e);
+		
+		Client client = DemoRESTClient.build(c.toString());
 		
 		// Application health check
 		e.healthChecks().register("APIHealthCheck", new AppHealthCheck(client));
@@ -61,6 +62,7 @@ public class GameAuthApplication extends Application<Configuration> {
         
         // Registering the GameUserRESTController
         e.jersey().register(GameUserRESTController.class);
+        e.jersey().register(RESTClientController.class);
 	}
 
 	public static void main(String[] args) throws Exception {
