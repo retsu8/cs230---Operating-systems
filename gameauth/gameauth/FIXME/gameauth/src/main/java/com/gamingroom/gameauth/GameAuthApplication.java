@@ -32,7 +32,7 @@ public class GameAuthApplication extends Application<Configuration> {
 	@Override
 	public void initialize(Bootstrap<Configuration> b) {
 	}
-
+	
 	@Override
 	public void run(Configuration c, Environment e) throws Exception 
 	{
@@ -44,6 +44,10 @@ public class GameAuthApplication extends Application<Configuration> {
 		JerseyClientBuilder DemoRESTClient = new JerseyClientBuilder(e);
 		
 		final Client client = DemoRESTClient.build(c.toString());
+		
+        // Registering the GameUserRESTController
+        e.jersey().register(new RESTClientController(client));
+        e.jersey().register(new GameUserRESTController(e.getValidator()));
 		
 		// Application health check
 		e.healthChecks().register("APIHealthCheck", new AppHealthCheck(client));
@@ -60,10 +64,6 @@ public class GameAuthApplication extends Application<Configuration> {
                 .buildAuthFilter()));
         e.jersey().register(new AuthValueFactoryProvider.Binder<>(GameUser.class));
         e.jersey().register(RolesAllowedDynamicFeature.class);
-        
-        // Registering the GameUserRESTController
-        e.jersey().register(new RESTClientController(client));
-        e.jersey().register(GameUserRESTController.class);
 	}
 
 	public static void main(String[] args) throws Exception {

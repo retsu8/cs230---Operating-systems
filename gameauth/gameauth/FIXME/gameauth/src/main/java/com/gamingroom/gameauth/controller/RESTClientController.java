@@ -12,7 +12,12 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import org.slf4j.LoggerFactory;
+
+import com.gamingroom.gameauth.GameAuthApplication;
 import com.gamingroom.gameauth.representations.GameUserInfo;
+
+import jdk.jfr.internal.Logger;
  
 @Produces(MediaType.TEXT_PLAIN)
 @Path("/client/")
@@ -23,15 +28,16 @@ public class RESTClientController
     public RESTClientController(Client client) {
         this.client = client;
     }
-
+    
     @GET
     @Path("/gameusers/")
     public String getGameUsers()
-    {
+    {   
         //Do not hard code in your application
         WebTarget webTarget = client.target("http://localhost:8080/gameusers");
         Invocation.Builder invocationBuilder =  webTarget.request(MediaType.APPLICATION_JSON);
         Response response = invocationBuilder.get();
+        
         @SuppressWarnings("rawtypes")
         ArrayList gameusers = response.readEntity(ArrayList.class);
         return gameusers.toString();

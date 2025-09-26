@@ -27,6 +27,7 @@ import com.gamingroom.gameauth.dao.GameUserDB;
 import com.gamingroom.gameauth.representations.GameUserInfo;
 
 @Produces(MediaType.APPLICATION_JSON)
+@Path("/gameusers/")
 public class GameUserRESTController {
  
     private final Validator validator;
@@ -43,7 +44,7 @@ public class GameUserRESTController {
     }
 
     @GET
-    @RolesAllowed(value = { "USER"})
+    @RolesAllowed({ "USER"})
     @Path("/{id}")
     public Response getGameUserById(@PathParam("id") Integer id,@Auth GameUser user) {
     	//You can validate here if user is watching his record
@@ -58,7 +59,7 @@ public class GameUserRESTController {
     }
 
     @POST
-    @RolesAllowed(value = { "ADMIN"})
+    @RolesAllowed({ "ADMIN"})
     @Path("")
     public Response createGameUser(GameUserInfo gameUserInfo, @Auth GameUser user) throws URISyntaxException {
         // validation
