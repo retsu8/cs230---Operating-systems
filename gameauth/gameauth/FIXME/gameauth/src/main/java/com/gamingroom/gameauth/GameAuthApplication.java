@@ -43,14 +43,15 @@ public class GameAuthApplication extends Application<Configuration> {
 		
 		JerseyClientBuilder DemoRESTClient = new JerseyClientBuilder(e);
 		
-		Client client = DemoRESTClient.build(c.toString());
+		final Client client = DemoRESTClient.build(c.toString());
 		
 		// Application health check
 		e.healthChecks().register("APIHealthCheck", new AppHealthCheck(client));
 
 		// Run multiple health checks
 		e.jersey().register(new HealthCheckController(e.healthChecks()));
-		
+
+
 		//Setup Basic Security
 		e.jersey().register(new AuthDynamicFeature(new BasicCredentialAuthFilter.Builder<GameUser>()
                 .setAuthenticator(new GameAuthenticator())
@@ -61,8 +62,8 @@ public class GameAuthApplication extends Application<Configuration> {
         e.jersey().register(RolesAllowedDynamicFeature.class);
         
         // Registering the GameUserRESTController
+        e.jersey().register(new RESTClientController(client));
         e.jersey().register(GameUserRESTController.class);
-        e.jersey().register(RESTClientController.class);
 	}
 
 	public static void main(String[] args) throws Exception {
